@@ -2,20 +2,16 @@ var http = require("http");
 var url = require("url");
 
 
-function start(route){
+function start(route,handle){
 
 
 	http.createServer(function  (request,response) {
 
 		var pathname = url.parse(request.url).pathname;
-		console.log("Request  for "+pathname+" received");
+		console.log("Request  for "+pathname+" received");  
 
-		route(pathname);
+		route(pathname,handle,response);
 
-
-		response.writeHead(200,{"content-type":"text/plain"});
-		response.write("hello world.");
-		response.end();
 
 	}).listen(8888);
 
